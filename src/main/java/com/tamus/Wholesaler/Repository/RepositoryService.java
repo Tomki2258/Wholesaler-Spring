@@ -20,7 +20,9 @@ public class RepositoryService implements IRepository{
     public Optional<Product> getByIndex(int index) {
         return Optional.of(productList.get(index));
     }
-
+    public int getSize(){
+        return productList.size();
+    }
     @Override
     public Optional<Product> getByName(String name) {
         return productList.stream().filter(p -> p.getName().equals(name)).findFirst();

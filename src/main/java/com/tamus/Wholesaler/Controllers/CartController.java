@@ -5,6 +5,7 @@ import com.tamus.Wholesaler.Repository.RepositoryService;
 import com.tamus.Wholesaler.ShoppingCart.IShoppingCart;
 import com.tamus.Wholesaler.ShoppingCart.ShoppingCart;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,13 +15,13 @@ public class CartController implements IShoppingCart {
 
     @GetMapping("/add")
     @Override
-    public void addProduct(Product product) {
-        shoppingCart.addProduct(repositoryService.getByIndex(0).get());
+    public void addProduct(@RequestParam int index) {
+        shoppingCart.addProduct(index);
     }
-
+    @GetMapping("/adds")
     @Override
-    public void addProducts(Product product, int amount) {
-        shoppingCart.addProducts(product,amount);
+    public void addProducts(@RequestParam int index,@RequestParam int amount) {
+        shoppingCart.addProducts(index,amount);
     }
 
     @GetMapping("/summary")
