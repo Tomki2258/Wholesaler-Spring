@@ -3,7 +3,7 @@ package com.tamus.Wholesaler.ShoppingCart;
 import com.tamus.Wholesaler.Entities.Product;
 
 public interface IShoppingCart {
-    void addProduct(Product product);
-    void addProducts(Product product,int amount);
+    void addProduct(int index);
+    void addProducts(int index,int amount);
     double summary();
 }

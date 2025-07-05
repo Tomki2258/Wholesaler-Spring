@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class WholesalerController {
     private ProductsJdbcRepository productsJdbcRepository = new ProductsJdbcRepository();
-    private RepositoryService repositoryService = new RepositoryService();
+    private RepositoryService repositoryService = RepositoryService.getInstance();
     public WholesalerController(){
         repositoryService.setProductsList(
                 productsJdbcRepository.getAll() 
@@ -25,5 +25,9 @@ public class WholesalerController {
     @GetMapping("/getAll")
     public List<Product> getAll(){
         return repositoryService.getAll();
+    }
+    @GetMapping("/size")
+    public int getSize(){
+        return repositoryService.getSize();
     }
 }
