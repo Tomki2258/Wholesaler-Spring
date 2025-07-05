@@ -1,21 +1,22 @@
 package com.tamus.Wholesaler.Controllers;
 
 import com.tamus.Wholesaler.Entities.Product;
-import com.tamus.Wholesaler.Repository.Jdbc.ProductsJdbcRepository;
+import com.tamus.Wholesaler.Repository.Jdbc.ProductsJdbc;
 import com.tamus.Wholesaler.Repository.RepositoryService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/wholesaler")
 public class WholesalerController {
-    private ProductsJdbcRepository productsJdbcRepository = new ProductsJdbcRepository();
+    private ProductsJdbc productsJdbc = new ProductsJdbc();
     private RepositoryService repositoryService = RepositoryService.getInstance();
     public WholesalerController(){
         repositoryService.setProductsList(
-                productsJdbcRepository.getAll() 
+                productsJdbc.getAll()
         );
     }
     @GetMapping("/test")

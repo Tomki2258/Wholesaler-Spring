@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductsJdbcRepository implements IRepository {
+public class ProductsJdbc implements IRepository {
 
-    private static ProductsJdbcRepository instance;
+    private static ProductsJdbc instance;
 
-    public static ProductsJdbcRepository getInstance(){
+    public static ProductsJdbc getInstance(){
         if(instance == null){
-            instance = new ProductsJdbcRepository();
+            instance = new ProductsJdbc();
         }
         return instance;
     }

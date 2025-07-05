@@ -1,7 +1,6 @@
 package com.tamus.Wholesaler.Repository;
 
 import com.tamus.Wholesaler.Entities.Product;
-import com.tamus.Wholesaler.Repository.Jdbc.ProductsJdbcRepository;
 
 import java.util.ArrayList;
 import java.util.List;

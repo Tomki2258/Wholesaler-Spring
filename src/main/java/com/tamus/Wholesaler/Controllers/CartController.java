@@ -5,10 +5,12 @@ import com.tamus.Wholesaler.Repository.RepositoryService;
 import com.tamus.Wholesaler.ShoppingCart.IShoppingCart;
 import com.tamus.Wholesaler.ShoppingCart.ShoppingCart;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/cart")
 public class CartController implements IShoppingCart {
     private RepositoryService repositoryService = RepositoryService.getInstance();
     private ShoppingCart shoppingCart = new ShoppingCart();
