@@ -18,7 +18,7 @@ public class RepositoryService implements IRepository{
     }
     @Override
     public Optional<Product> getByIndex(int index) {
-        return Optional.ofNullable(productList.get(index));
+        return Optional.of(productList.get(index));
     }
 
     @Override
