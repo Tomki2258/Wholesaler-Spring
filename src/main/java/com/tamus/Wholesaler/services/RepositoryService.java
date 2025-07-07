@@ -1,12 +1,13 @@
-package com.tamus.Wholesaler.Repository;
+package com.tamus.Wholesaler.services;
 
 import com.tamus.Wholesaler.Entities.Product;
+import com.tamus.Wholesaler.Repository.IRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RepositoryService implements IRepository{
+public class RepositoryService implements IRepository {
     private static RepositoryService instance = null;
     private List<Product> productList = new ArrayList<Product>();
     public static RepositoryService  getInstance(){

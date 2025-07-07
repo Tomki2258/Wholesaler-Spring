@@ -1,7 +1,7 @@
 package com.tamus.Wholesaler.ShoppingCart;
 
 import com.tamus.Wholesaler.Entities.Product;
-import com.tamus.Wholesaler.Repository.RepositoryService;
+import com.tamus.Wholesaler.services.RepositoryService;
 
 import java.util.ArrayList;
 import java.util.List;

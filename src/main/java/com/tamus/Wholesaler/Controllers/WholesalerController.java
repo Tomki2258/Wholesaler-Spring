@@ -2,7 +2,7 @@ package com.tamus.Wholesaler.Controllers;
 
 import com.tamus.Wholesaler.Entities.Product;
 import com.tamus.Wholesaler.Repository.Jdbc.ProductsJdbc;
-import com.tamus.Wholesaler.Repository.RepositoryService;
+import com.tamus.Wholesaler.services.RepositoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
