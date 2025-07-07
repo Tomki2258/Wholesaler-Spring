@@ -26,4 +26,10 @@ public class UsersController implements IUserRepository {
     public Optional<User> getByIndex(@RequestParam int index) {
         return usersService.getByIndex(index);
     }
+
+    @GetMapping("/findByLogin")
+    @Override
+    public User findByLogin(@RequestParam String login) {
+        return usersService.findByLogin(login);
+    }
 }

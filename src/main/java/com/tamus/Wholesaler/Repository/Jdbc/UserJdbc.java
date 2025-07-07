@@ -47,4 +47,9 @@ public class UserJdbc implements IUserRepository {
     public Optional<User> getByIndex(int index) {
         return Optional.empty();
     }
+
+    @Override
+    public User findByLogin(String login) {
+        return userList.stream().filter(user -> user.getLogin().equals(login)).findFirst().get();
+    }
 }

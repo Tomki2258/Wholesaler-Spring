@@ -17,4 +17,9 @@ public class UsersService implements IUserRepository{
     public Optional<User> getByIndex(int index) {
         return userJdbc.getByIndex(index);
     }
+
+    @Override
+    public User findByLogin(String login) {
+        return userJdbc.findByLogin(login);
+    }
 }
