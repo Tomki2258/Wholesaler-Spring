@@ -27,7 +27,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
             JwtAuthFilter jwtAuthFilter,
-            AuthProvider authProvider
+            AuthenticationProvider authProvider
     )throws Exception{
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth-> auth
@@ -46,7 +46,7 @@ public class SecurityConfig {
             PasswordEncoder passwordEncoder
     ){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsPasswordService(userDetailsService);
+        provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }

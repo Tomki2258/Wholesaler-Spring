@@ -49,7 +49,7 @@ public class UserJdbc implements IUserRepository {
     }
 
     @Override
-    public User findByLogin(String login) {
-        return userList.stream().filter(user -> user.getLogin().equals(login)).findFirst().get();
+    public Optional<User> findByLogin(String login) {
+        return userList.stream().filter(user -> user.getLogin().equals(login)).findFirst();
     }
 }
