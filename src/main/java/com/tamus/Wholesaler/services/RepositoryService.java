@@ -50,4 +50,14 @@ public class RepositoryService implements IRepository{
 
         productsJdbc.addProduct(product);
     }
+
+    @Override
+    public void deleteProduct(int id) {
+        productsJdbc.deleteProduct(id);
+    }
+
+    @Override
+    public void deleteByNameProduct(String name) {
+        productsJdbc.deleteByNameProduct(name);
+    }
 }

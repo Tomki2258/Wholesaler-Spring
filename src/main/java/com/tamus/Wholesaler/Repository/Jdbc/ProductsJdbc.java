@@ -89,4 +89,28 @@ public class ProductsJdbc implements IRepository {
             throw new RuntimeException("Błąd podczas dodawania produktu", e);
         }
     }
+
+    @Override
+    public void deleteProduct(int id) {
+        String sql = "DELETE FROM products WHERE id = ?";
+        try (Connection connection = JdbcConnectionManager.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Błąd podczas usuwania produktu po id", e);
+        }
+    }
+
+    @Override
+    public void deleteByNameProduct(String name) {
+        String sql = "DELETE FROM products WHERE name = ?";
+        try (Connection connection = JdbcConnectionManager.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, name);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Błąd podczas usuwania produktu po nazwie", e);
+        }
+    }
 }

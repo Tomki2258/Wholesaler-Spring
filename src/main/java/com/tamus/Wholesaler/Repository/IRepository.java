@@ -12,4 +12,8 @@ public interface IRepository {
     List<Product> getAll();
     boolean isAvailable(int index);
     void addProduct(Product product);
+
+    void deleteProduct(int id);
+
+    void deleteByNameProduct(String name);
 }
