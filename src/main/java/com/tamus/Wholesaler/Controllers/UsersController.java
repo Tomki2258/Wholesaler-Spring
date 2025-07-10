@@ -26,7 +26,7 @@ public class UsersController implements IUserRepository {
 
     @GetMapping("/findByLogin")
     @Override
-    public User findByLogin(@RequestParam String login) {
+    public Optional<User> findByLogin(@RequestParam String login) {
         return usersService.findByLogin(login);
     }
 

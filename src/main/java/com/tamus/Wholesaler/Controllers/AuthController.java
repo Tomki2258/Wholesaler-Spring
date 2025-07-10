@@ -4,6 +4,7 @@ import com.tamus.Wholesaler.dto.LoginRequest;
 import com.tamus.Wholesaler.dto.LoginResponse;
 import com.tamus.Wholesaler.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

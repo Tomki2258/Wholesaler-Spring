@@ -1,6 +1,6 @@
 package com.tamus.Wholesaler.Controllers;
 
-import com.tamus.Wholesaler.services.RepositoryService;
+import com.tamus.Wholesaler.Repository.RepositoryService;
 import com.tamus.Wholesaler.ShoppingCart.IShoppingCart;
 import com.tamus.Wholesaler.ShoppingCart.ShoppingCart;
 import org.springframework.web.bind.annotation.GetMapping;

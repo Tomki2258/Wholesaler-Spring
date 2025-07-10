@@ -20,7 +20,7 @@ public class UsersService implements IUserRepository{
     }
 
     @Override
-    public User findByLogin(String login) {
+    public Optional<User> findByLogin(String login) {
         return userJdbc.findByLogin(login);
     }
 

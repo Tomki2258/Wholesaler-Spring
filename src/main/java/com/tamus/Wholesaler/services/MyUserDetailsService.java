@@ -1,6 +1,7 @@
 package com.tamus.Wholesaler.services;
 
 import com.tamus.Wholesaler.Entities.User;
+import com.tamus.Wholesaler.Repository.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
