@@ -3,9 +3,7 @@ package com.tamus.Wholesaler.Controllers;
 import com.tamus.Wholesaler.Entities.Product;
 import com.tamus.Wholesaler.Repository.Jdbc.ProductsJdbc;
 import com.tamus.Wholesaler.Repository.RepositoryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +24,18 @@ public class WholesalerController {
     @GetMapping("/getAll")
     public List<Product> getAll(){
         return repositoryService.getAll();
+    }
+    @PostMapping("/addProduct")
+    public void addProduct(@RequestParam String name,
+                           @RequestParam String producent,
+                           @RequestParam double price){
+        Product product = Product.builder()
+                        .id(productsJdbc.getAll().size() + 1)
+                        .name(name)
+                        .producent(producent)
+                        .price(price)
+                        .build();
+        repositoryService.addProduct(product);
     }
     @GetMapping("/size")
     public int getSize(){

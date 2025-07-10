@@ -16,11 +16,8 @@ public class User {
     private String login;
     @Getter
     private String password;
-    public User(int id, String login, String password){
-        this.id = id;
-        this.login = login;
-        this.password = password;
-    }
+    @Getter
+    private String role;
 
     public void Describe(){
         System.out.println("cos");

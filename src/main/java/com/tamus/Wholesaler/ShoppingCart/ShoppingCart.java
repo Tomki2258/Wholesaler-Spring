@@ -1,6 +1,7 @@
 package com.tamus.Wholesaler.ShoppingCart;
 
 import com.tamus.Wholesaler.Entities.Product;
+import com.tamus.Wholesaler.Repository.CartRepository;
 import com.tamus.Wholesaler.Repository.RepositoryService;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 public class ShoppingCart implements IShoppingCart {
     private List<Product> productList = new ArrayList<>();
     private RepositoryService repositoryService = RepositoryService.getInstance();
+    private CartRepository cartRepository = new CartRepository();
     @Override
     public void addProduct(int index) {
         if(repositoryService.getByIndex(index).isPresent()){
@@ -34,5 +36,10 @@ public class ShoppingCart implements IShoppingCart {
         return productList.stream()
                 .mapToDouble(Product::getPrice)
                 .sum();
+    }
+
+    @Override
+    public void setOrder(int userId, double orderSum) {
+            cartRepository.setOrder(userId,orderSum);
     }
 }

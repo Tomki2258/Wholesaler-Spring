@@ -6,4 +6,5 @@ public interface IShoppingCart {
     void addProduct(int index);
     void addProducts(int index,int amount);
     double summary();
+    void setOrder(int userId,double orderSum);
 }

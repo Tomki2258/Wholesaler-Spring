@@ -9,4 +9,5 @@ public interface IUserRepository {
     List<User> getAll();
     Optional<User> getByIndex(int index);
     User findByLogin(String login);
+    void addUser(User user);
 }

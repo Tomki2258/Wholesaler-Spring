@@ -3,10 +3,7 @@ package com.tamus.Wholesaler.Controllers;
 import com.tamus.Wholesaler.Entities.User;
 import com.tamus.Wholesaler.Repository.IUserRepository;
 import com.tamus.Wholesaler.Repository.UsersService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,5 +28,11 @@ public class UsersController implements IUserRepository {
     @Override
     public User findByLogin(@RequestParam String login) {
         return usersService.findByLogin(login);
+    }
+
+    @PostMapping("/addUser")
+    @Override
+    public void addUser(@RequestBody User user) {
+        usersService.addUser(user);
     }
 }

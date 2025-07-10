@@ -11,4 +11,5 @@ public interface IRepository {
     void setProductsList(List<Product> productList);
     List<Product> getAll();
     boolean isAvailable(int index);
+    void addProduct(Product product);
 }

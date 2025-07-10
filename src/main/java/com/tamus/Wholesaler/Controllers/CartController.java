@@ -31,4 +31,13 @@ public class CartController implements IShoppingCart {
     public double summary() {
         return shoppingCart.summary();
     }
+
+    @Override
+    public void setOrder(int userId, double orderSum) {
+
+    }
+    @GetMapping("/setOrder")
+    public void setOrder() {
+        shoppingCart.setOrder(1,summary());
+    }
 }
