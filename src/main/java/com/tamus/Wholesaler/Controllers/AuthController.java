@@ -3,6 +3,7 @@ package com.tamus.Wholesaler.Controllers;
 import com.tamus.Wholesaler.dto.LoginRequest;
 import com.tamus.Wholesaler.dto.LoginResponse;
 import com.tamus.Wholesaler.security.JwtUtil;
+import com.tamus.Wholesaler.services.UserDataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final UserDataService userDataService = UserDataService.getInstance();
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         Authentication auth;
@@ -37,6 +39,8 @@ public class AuthController {
         }
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         String token = jwtUtil.generateToken(userDetails);
+        userDataService.setLogin(userDetails.getUsername());
+
         LoginResponse responseBody = new LoginResponse(token);
         return ResponseEntity.ok(responseBody);
     }

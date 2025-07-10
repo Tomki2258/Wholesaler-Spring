@@ -3,6 +3,8 @@ package com.tamus.Wholesaler.ShoppingCart;
 import com.tamus.Wholesaler.Entities.Product;
 import com.tamus.Wholesaler.Repository.CartRepository;
 import com.tamus.Wholesaler.Repository.RepositoryService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,11 @@ public class ShoppingCart implements IShoppingCart {
     }
 
     @Override
+    public void removeProduct(int index) {
+        productList.remove(repositoryService.getByIndex(index).get());
+    }
+
+    @Override
     public void addProducts(int index, int amount) {
         if(repositoryService.getByIndex(index).isEmpty()){
             return;
@@ -28,6 +35,17 @@ public class ShoppingCart implements IShoppingCart {
         Product product = repositoryService.getByIndex(index).get();
         for (int i = 0; i < amount; i++) {
             productList.add(product);
+        }
+    }
+
+    @Override
+    public void removeProducts(int index, int amount) {
+        if (repositoryService.getByIndex(index).isEmpty()) {
+            return;
+        }
+        Product product = repositoryService.getByIndex(index).get();
+        for (int i = 0; i < amount; i++) {
+            productList.remove(product);
         }
     }
 
@@ -41,5 +59,9 @@ public class ShoppingCart implements IShoppingCart {
     @Override
     public void setOrder(int userId, double orderSum) {
             cartRepository.setOrder(userId,orderSum);
+    }
+    public void setOrder(double orderSum) {
+        cartRepository.setOrder(orderSum);
+        productList.clear();
     }
 }

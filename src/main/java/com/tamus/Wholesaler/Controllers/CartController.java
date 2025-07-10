@@ -3,10 +3,8 @@ package com.tamus.Wholesaler.Controllers;
 import com.tamus.Wholesaler.Repository.RepositoryService;
 import com.tamus.Wholesaler.ShoppingCart.IShoppingCart;
 import com.tamus.Wholesaler.ShoppingCart.ShoppingCart;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.tamus.Wholesaler.services.UserDataService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cart")
@@ -14,15 +12,27 @@ public class CartController implements IShoppingCart {
     private RepositoryService repositoryService = RepositoryService.getInstance();
     private ShoppingCart shoppingCart = new ShoppingCart();
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     @Override
     public void addProduct(@RequestParam int index) {
         shoppingCart.addProduct(index);
     }
+
+    @PostMapping("/remove")
+    @Override
+    public void removeProduct(@RequestParam int index) {
+        shoppingCart.removeProduct(index);
+    }
+
     @GetMapping("/adds")
     @Override
     public void addProducts(@RequestParam int index,@RequestParam int amount) {
         shoppingCart.addProducts(index,amount);
+    }
+    @PostMapping("/removes")
+    @Override
+    public void removeProducts(@RequestParam int  index,@RequestParam int amount) {
+        shoppingCart.removeProducts(index, amount);
     }
 
     @GetMapping("/summary")
@@ -37,6 +47,7 @@ public class CartController implements IShoppingCart {
     }
     @GetMapping("/setOrder")
     public void setOrder() {
-        shoppingCart.setOrder(1,summary());
+        //System.out.println("user nickname: " + UserDataService.getInstance().getLogin());
+        shoppingCart.setOrder(summary());
     }
 }
