@@ -19,9 +19,9 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/wholesaler/addProduct").hasRole("ADMIN")
                         .requestMatchers("/wholesaler/**").permitAll()
                         .requestMatchers("/cart/**").permitAll()
-                        .requestMatchers("/wholesaler/addProduct").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
 
