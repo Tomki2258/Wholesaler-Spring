@@ -8,5 +8,6 @@ import java.util.Optional;
 public interface IUserRepository {
     List<User> getAll();
     Optional<User> getByIndex(int index);
-    Optional<User> findByLogin(String login);
+    User findByLogin(String login);
+    void addUser(User user);
 }

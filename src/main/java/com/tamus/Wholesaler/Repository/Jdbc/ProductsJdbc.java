@@ -23,6 +23,9 @@ public class ProductsJdbc implements IRepository {
         return instance;
     }
 
+    public int getSize() {
+        return getAll().size();
+    }
     @Override
     public Optional<Product> getByIndex(int index) {
         return Optional.empty();
@@ -70,4 +73,20 @@ public class ProductsJdbc implements IRepository {
         return false;
     }
 
+    @Override
+    public void addProduct(Product product) {
+        String sql = "INSERT INTO products (name, producent, price) VALUES (?, ?, ?)";
+
+        try (Connection connection = JdbcConnectionManager.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, product.getName());
+            stmt.setString(2, product.getProducent());
+            stmt.setDouble(3, product.getPrice());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Błąd podczas dodawania produktu", e);
+        }
+    }
 }
