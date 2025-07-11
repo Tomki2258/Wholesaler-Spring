@@ -25,4 +25,7 @@ public class OrdersService {
     public void approveOrder(int id) {
         ordersRepository.approveById(id);
     }
+    public void bringBackOrder(int id) {
+        ordersRepository.bringBackById(id);
+    }
 }

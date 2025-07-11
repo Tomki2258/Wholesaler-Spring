@@ -10,4 +10,5 @@ public interface IOrders {
     void approveById(int id);
 
     void deleteById(int id);
+    void bringBackById(int id);
 }

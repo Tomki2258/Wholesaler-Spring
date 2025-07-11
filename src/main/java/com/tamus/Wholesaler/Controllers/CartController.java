@@ -56,7 +56,6 @@ public class CartController implements IShoppingCart {
 
     @GetMapping("/setOrder")
     public void setOrder() {
-        //System.out.println("user nickname: " + UserDataService.getInstance().getLogin());
         shoppingCart.setOrder(summary());
     }
 }

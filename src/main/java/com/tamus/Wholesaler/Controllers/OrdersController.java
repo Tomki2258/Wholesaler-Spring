@@ -20,12 +20,40 @@ public class OrdersController {
     public List<Order> getAllOrders() {
         return ordersService.getAll();
     }
-    @PostMapping("/calcelOrder")
+    @PostMapping("/cancelOrder")
     public void cancelOrder(@RequestParam int id) {
         ordersService.cancelOrder(id);
     }
     @PostMapping("/approveOrder")
     public void approveOrder(@RequestParam int id) {
+        ordersService.approveOrder(id);
+    }
+    @PostMapping("/pendingOrders")
+    public List<Order> pendingOrders() {
+        return ordersService.getAll().stream()
+                .filter(order -> order.getStatus().equals("PENDING"))
+                .toList();
+    }
+    @PostMapping("/approvedOrders")
+    public List<Order> approvedOrders() {
+        return ordersService.getAll().stream()
+                .filter(order -> order.getStatus().equals("APPROVED"))
+                .toList();
+    }
+    @PostMapping("/canceledOrders")
+    public List<Order> canceledOrders() {
+        return ordersService.getAll().stream()
+                .filter(order -> order.getStatus().equals("CANCELED"))
+                .toList();
+    }
+    @PostMapping("/inProgressOrders")
+    public List<Order> inProgressOrders() {
+        return ordersService.getAll().stream()
+                .filter(order -> order.getStatus().equals("IN_PROGRESS"))
+                .toList();
+    }
+    @PostMapping("/bringBackOrder")
+    public void bringBackOrder(@RequestParam int id) {
         ordersService.approveOrder(id);
     }
 }

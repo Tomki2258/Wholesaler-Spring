@@ -61,13 +61,27 @@ public class OrdersRepository implements IOrders{
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE FROM orders WHERE id = ?";
+        String sql = "UPDATE orders SET status = ? WHERE id = ?";
         try (Connection connection = JdbcConnectionManager.getInstance().getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+            stmt.setString(1, "CANCELED");
+            stmt.setInt(2, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error deleting order", e);
+            throw new RuntimeException("Error canceling order", e);
+        }
+    }
+
+    @Override
+    public void bringBackById(int id) {
+        String sql = "UPDATE orders SET status = ? WHERE id = ?";
+        try (Connection connection = JdbcConnectionManager.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "IN_PROGRESS");
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error canceling order", e);
         }
     }
 }

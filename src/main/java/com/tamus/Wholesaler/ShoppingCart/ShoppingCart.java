@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ShoppingCart implements IShoppingCart {
@@ -25,7 +26,13 @@ public class ShoppingCart implements IShoppingCart {
 
     @Override
     public void removeProduct(int index) {
-        productList.remove(repositoryService.getByIndex(index).get());
+        for (Iterator<Product> iterator = productList.iterator(); iterator.hasNext(); ) {
+            Product product = iterator.next();
+            if (product.getId() == index) {
+                iterator.remove();
+                break;
+            }
+        }
     }
 
     @Override
@@ -41,12 +48,14 @@ public class ShoppingCart implements IShoppingCart {
 
     @Override
     public void removeProducts(int index, int amount) {
-        if (repositoryService.getByIndex(index).isEmpty()) {
-            return;
-        }
-        Product product = repositoryService.getByIndex(index).get();
-        for (int i = 0; i < amount; i++) {
-            productList.remove(product);
+        int removed = 0;
+        Iterator<Product> iterator = productList.iterator();
+        while (iterator.hasNext() && removed < amount) {
+            Product product = iterator.next();
+            if (product.getId() == index) {
+                iterator.remove();
+                removed++;
+            }
         }
     }
 
