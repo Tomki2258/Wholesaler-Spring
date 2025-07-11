@@ -1,10 +1,13 @@
 package com.tamus.Wholesaler.Controllers;
 
+import com.tamus.Wholesaler.Entities.Product;
 import com.tamus.Wholesaler.Repository.RepositoryService;
 import com.tamus.Wholesaler.ShoppingCart.IShoppingCart;
 import com.tamus.Wholesaler.ShoppingCart.ShoppingCart;
 import com.tamus.Wholesaler.services.UserDataService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
@@ -45,6 +48,12 @@ public class CartController implements IShoppingCart {
     public void setOrder(int userId, double orderSum) {
 
     }
+    @GetMapping("/getCartProducts")
+    @Override
+    public List<Product> getCartProducts() {
+        return shoppingCart.getCartProducts();
+    }
+
     @GetMapping("/setOrder")
     public void setOrder() {
         //System.out.println("user nickname: " + UserDataService.getInstance().getLogin());

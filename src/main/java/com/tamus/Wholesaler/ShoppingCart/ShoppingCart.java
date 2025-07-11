@@ -1,5 +1,6 @@
 package com.tamus.Wholesaler.ShoppingCart;
 
+import com.tamus.Wholesaler.Entities.Order;
 import com.tamus.Wholesaler.Entities.Product;
 import com.tamus.Wholesaler.Repository.CartRepository;
 import com.tamus.Wholesaler.Repository.RepositoryService;
@@ -60,6 +61,12 @@ public class ShoppingCart implements IShoppingCart {
     public void setOrder(int userId, double orderSum) {
             cartRepository.setOrder(userId,orderSum);
     }
+
+    @Override
+    public List<Product> getCartProducts() {
+        return productList;
+    }
+
     public void setOrder(double orderSum) {
         cartRepository.setOrder(orderSum);
         productList.clear();

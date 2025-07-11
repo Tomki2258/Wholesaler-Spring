@@ -3,6 +3,7 @@ package com.tamus.Wholesaler.Controllers;
 import com.tamus.Wholesaler.Entities.Product;
 import com.tamus.Wholesaler.Repository.Jdbc.ProductsJdbc;
 import com.tamus.Wholesaler.Repository.RepositoryService;
+import com.tamus.Wholesaler.services.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private ProductsJdbc productsJdbc = ProductsJdbc.getInstance();
     private RepositoryService repositoryService = RepositoryService.getInstance();
+    private OrdersService ordersService = new OrdersService();
     @PostMapping("/addProduct")
     public void addProduct(@RequestParam String name,
                            @RequestParam String producent,

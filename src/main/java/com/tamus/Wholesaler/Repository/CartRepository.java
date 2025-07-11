@@ -1,11 +1,15 @@
 package com.tamus.Wholesaler.Repository;
 
+import com.tamus.Wholesaler.Entities.Order;
+import com.tamus.Wholesaler.Entities.Product;
+import com.tamus.Wholesaler.OrderStatusEnum;
 import com.tamus.Wholesaler.ShoppingCart.IShoppingCart;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.sql.Types;
+import java.util.List;
+
 import com.tamus.Wholesaler.db.JdbcConnectionManager;
 import com.tamus.Wholesaler.services.UserDataService;
 import org.springframework.security.core.Authentication;
@@ -56,8 +60,15 @@ public class CartRepository implements IShoppingCart {
             throw new RuntimeException("Błąd podczas dodawania zamówienia", e);
         }
     }
+
+    @Override
+    public List<Product> getCartProducts() {
+
+        return null;
+    }
+
     public void setOrder(double orderSum) {
-        String sql = "INSERT INTO orders (user_id, order_sum, startedat, paidat) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO orders (user_id, order_sum, startedat, paidat,status) VALUES (?, ?, ?, ?, ?)";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = UserDataService.getInstance().getLogin();
         try (Connection connection = JdbcConnectionManager.getInstance().getConnection();
@@ -69,6 +80,7 @@ public class CartRepository implements IShoppingCart {
             stmt.setDouble(2, orderSum);
             stmt.setTimestamp(3, currentTimestamp);
             stmt.setNull(4, java.sql.Types.TIMESTAMP);
+            stmt.setString(5, OrderStatusEnum.NEW.toString());
 
             stmt.executeUpdate();
 
